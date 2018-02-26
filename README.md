@@ -7,8 +7,8 @@ Computer Vision algorithms implementation from scratch using Python
   * Gaussian Smoothing
   * Average Smoothing
 * Threshold
- * Global Threshold
- * Otsu Threshold
+  * Global Threshold
+  * Otsu Threshold
 * Image praymid
 * Canny edge detection
 * Hough line transfom

@@ -11,7 +11,7 @@ Computer Vision algorithms implementation in Python
  * Otsu Threshold
 * Image praymid
 * Canny edge detection
-* Hough line transfomation
+* Hough line transfom
 
 ## Ongoing algorithms implementation
 * DoG keypoint detector
@@ -23,3 +23,4 @@ Computer Vision algorithms implementation in Python
 ## Libaries
 * Use [numpy](http://www.numpy.org/) to conduct matrix calculation
 * Use [PIL](https://pillow.readthedocs.io/en/latest/) to open, save and draw lines on the images
+

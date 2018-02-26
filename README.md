@@ -18,6 +18,8 @@ Computer Vision algorithms implementation in Python
 * Homography/Image stitching
 * BRIEF descriptor
 * Hough circle transform
+* Harris Corner Detection
+* Morphology
 * Watershed algorithms
 
 ## Libaries

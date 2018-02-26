@@ -3,7 +3,11 @@ Computer Vision algorithms implementation in Python
 
 ## Finished algorithms
 * Convolution
-* Average Smoothing/Guassian Smoothing
-*
+* Smoothing
+** Average Smoothing
+** Gaussian Smoothing
+* Threshold
+** Global Threshold
+** Otsu Threshold
 *
 *

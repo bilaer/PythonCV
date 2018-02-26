@@ -1,5 +1,5 @@
 # PythonCV
-Computer Vision algorithms implementation in Python
+Computer Vision algorithms implementation from scratch using Python
 
 ## Finished algorithms implementation
 * Convolution

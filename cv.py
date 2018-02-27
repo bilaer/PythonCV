@@ -917,55 +917,6 @@ class Filter(object):
                     result[i][j] = 255
         return PIL.Image.fromarray(np.uint8(result))
 
-
-    #############################################################
-    #                     Corner Detection                      #
-    #############################################################
-
-    # Detection that invariant to the rotation but not scale
-    def harrisCorner(self, image, width, height, r, k):
-        # Compute x and y derivatives of image
-        gx, gy = self.getSobelKernel()
-        r = int((gx.shape[0] - 1) / 2)
-        mirror = self.padding(image, width, height, r)
-
-        Ix = np.array(self.conv(mirror, width + 2 * r, height + 2 * r, 8, gx, r, correct=False, array=True))
-        Iy = np.array(self.conv(mirror, width + 2 * r, height + 2 * r, 8, gy, r, correct=False, array=True))
-
-        # Compute products of derivatives at every pixel
-        Ix2, Ixy, Iy2 = np.zeros(Ix.shape), np.zeros(Ix.shape), np.zeros(Ix.shape)
-        for i in range(Ix.shape[0]):
-            for j in range(Ix.shape[1]):
-                Ix2[i][j] = float(Ix[i][j])**2
-                Ixy[i][j] = float(Ix[i][j]) * float(Iy[i][j])
-                Iy2[i][j] = float(Iy[i][j])**2
-
-        # Compute the sums of the products of derivatives at each pixels
-        sumKernel = np.full((3, 3), 1)
-        Ix2Mirror = self.padding(image, width, height, r)
-        IxyMirror = self.padding(image, width, height, r)
-        Iy2Mirror = self.padding(image, width, height, r)
-        Sx2 = np.array(self.conv(Ix2Mirror, width + 2 * r, height + 2 * r, 1, sumKernel, r, correct=False, array=True))
-        Sxy = np.array(self.conv(IxyMirror, width + 2 * r, height + 2 * r, 1, sumKernel, r, correct=False, array=True))
-        Sy2 = np.array(self.conv(Iy2Mirror, width + 2 * r, height + 2 * r, 1, sumKernel, r, correct=False, array=True))
-
-        # Define the matrix at each pixel and take threshold on the responses
-        result = np.copy(image)
-        for i in range(Sx2.shape[0]):
-            for j in range(Sx2.shape[1]):
-                M = np.matrix([Sx2[i][j], Sxy[i][j], Sxy[i][j], Sy2[i][j]])
-                R = np.linalg.det(M) + k*(np.trace(M))**2
-                if result[i][j] > R:
-                    result[i][j] = 255
-                else:
-                    result[i][j] = 0
-
-        # Non-maximum suppression
-
-    # Detector that is invariant to the scale, unlike the harris corner detector
-    def SIFT(self, image):
-        pass
-
     #############################################################
     #                      Image Padding                        #
     #############################################################
